@@ -24,7 +24,9 @@ const App = () => {
       setOutput(data.output);
     } catch ({ response }) {
       if (response) {
-        const errMsg = response.data.err.stderr
+        const err = response.data.err.stderr
+        let arr = err.split(',');
+        let errMsg = arr.slice(1, arr.length).join(',');
         setOutput(errMsg);
       } else {
         setOutput("Error connecting to server!")
